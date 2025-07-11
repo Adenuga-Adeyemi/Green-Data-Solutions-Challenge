@@ -35,29 +35,29 @@ Nulls values were inspected across all columns. Columns were checked for formatt
 ## Column-Specific Cleaning:
 - ID-Column- I highlighted the duplicate IDs using conditional formatting. This was done through the new menu add-ins (Table Design)>Conditional Formatting>Highlight Cell Rules>Duplicate Value. A total number of duplicates found revealed 280 records. The majority of the numbers showed twice, while some thrice. These discrepancies likely resulted from entries across different healthcare annexes within this unified system.
 
-- ID Conditional formatting process- Name Column: Reformatted the column text to a sentence case using the formula =PROPER(B2). I created a new column and typed the formula. After which it was copied and pasted as value, Below is the image showing the formula that was used to convert the text to sentence case:
+- Name Column: Reformatted the column text to a sentence case using the formula =PROPER(B2). I created a new column and typed the formula. After which it was copied and pasted as value, Below is the image showing the formula that was used to convert the text to sentence case:
 
-- Changing Name Column to Sentence Case -Age Column: The missing values (Unknown) were replaced with the average age of the total patient's age, which was calculated as 32.97807, which was formatted by removing the float numbers to 33. This was calculated using =AVERAGE(). 
+- -Age Column: The missing values (Unknown) were replaced with the average age of the total patient's age, which was calculated as 32.97807, which was formatted by removing the float numbers to 33. This was calculated using =AVERAGE(). 
 
-- Average Age Calculated Value - Formatted Average Age Calculated Value: It was observed that there were outliers in the values, meaning that the age data value does not follow a normal distribution. The data values consist of ages under 0- 14 years of age, which I categorize as very young. The data dictionary justified that the minimum educational status of the Patient's record is classified as "High Schooler". This shows that ages 0–14 years are very young individuals who are still in Kindergarten, Nursery, and Basic Classes. This age range has a total of 55 records. I thereafter replaced these values with the median, which was calculated as =MEDIAN():
+- Formatted Average Age Calculated Value: It was observed that there were outliers in the values, meaning that the age data value does not follow a normal distribution. The data values consist of ages under 0- 14 years of age, which I categorize as very young. The data dictionary justified that the minimum educational status of the Patient's record is classified as "High Schooler". This shows that ages 0–14 years are very young individuals who are still in Kindergarten, Nursery, and Basic Classes. This age range has a total of 55 records. I thereafter replaced these values with the median, which was calculated as =MEDIAN():
   
 - Median Age Calculated Value: I also observed those over 70 years of age, and their educational details revealed that they are "RETIRED". Hence, their age was retained for the analysis, due to their educational status, which is significant to the the analysis.
 
 - Gender Column: There are missing and inconsistent gender values. I created a column and used a logical function (IFS). =IFS(logical test 1, value if true 1, logical test 2, value if true 2, …..). The formula was used thus; =IFS(D2="M", "Male", D2="F", "Female", D2="Male", "Male", D2= "Female", "Female", TRUE, "Others"). This is because the data dictionary provided revealed that the gender values consist of Male, Female and Others.
 
-- Gender Formatted ValueCity Column: The city names had few abbreviated values and inconsistent sentence cases. The inconsistent cases were converted to sentence cases using =PROPER(). Abbreviated values were filled forward based on the dataset's context.
+- City Column: The city names had few abbreviated values and inconsistent sentence cases. The inconsistent cases were converted to sentence cases using =PROPER(). Abbreviated values were filled forward based on the dataset's context.
 
-- City Formatted Value - Formatted View (After formatting)Blood type Column: The fact column shows 8 blanks, replaced with the the most occurrence categorical value, O+.
+-Blood type Column: The fact column shows 8 blanks, replaced with the the most occurrence categorical value, O+.
 
 - Education Column: There are irregular entries like "High School (Ged)", which were corrected to "High School", "Bachelor" were corrected as "Bachelor's", "Associate" and "PhD" to "Master's" and blank spaces were filled with most frequent categorical value, Master's.
 
 - Employment Status: The data values were categories using the =IFS(), logical functions formula, grouping the related status terms to the right status, such as Freelance is classified as "Employed".
   
-- Formatted Employment Status Value - Salary Column: The column is a monetary unit, including text. I performed an operation using text to column to sepeare the text from numbers using delimiter () and I separated to creat another column. The salary has 9 missing values and replaced blanks with 0.
+- Salary Column: The column is a monetary unit, including text. I performed an operation using text to column to sepeare the text from numbers using delimiter () and I separated to creat another column. The salary has 9 missing values and replaced blanks with 0.
 
-- Salary before cleaning - Salary formatted Value - Health Condition: The column shows Excellent, Good and Poor from the data dictionary. Data were categorised in this order using the IFS functions. 45 blanks were replaced by the most frequent value.
+-  Health Condition: The column shows Excellent, Good and Poor from the data dictionary. Data were categorised in this order using the IFS functions. 45 blanks were replaced by the most frequent value.
   
-- Health Condition Formatted Value - Credit Score: The column had None and N/A. I replaced the N/A and None to 0, because it a numerical value. I also observed 380(typo) for 9 records. It could have been an error, but bevause the data set is not much I replaced values with average of the entire values in the column.
+- Credit Score: The column had None and N/A. I replaced the N/A and None to 0, because it a numerical value. I also observed 380(typo) for 9 records. It could have been an error, but bevause the data set is not much I replaced values with average of the entire values in the column.
 
 - Date of Admission: The column was written in a text format, I converted the data type to date format and uploaded to PowerQuery Editor to automatically convert the data type to date.
   
